@@ -1,4 +1,4 @@
-# octopress-appstore
+# Octopress AppStore Plugin
 
 An octopress plugin that displays app info from the AppStore.
 
