@@ -10,9 +10,13 @@ An octopress plugin that displays app info from the AppStore.
 
 ## Example
 
+Magically this:
+
 ```ruby
 {% app_store 364709193 %}
 ```
+
+will become this:
 
 ```html
 <a class='app-widget com-apple-iBooks' href='https://itunes.apple.com/us/app/ibooks/id364709193?mt=8&uo=4' target='_blank'>
