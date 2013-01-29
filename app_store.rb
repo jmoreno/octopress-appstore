@@ -1,6 +1,4 @@
-# Example:
-# {% app_store 593160118 %}
-#
+# Usage: {% app_store 593160118 %}
 
 require 'cgi'
 require 'open-uri'
@@ -17,6 +15,10 @@ module Jekyll
       FileUtils.mkdir_p @local_folder
     end
 
+    def app_store_url_with_id(app_store_id)
+      "http://itunes.apple.com/lookup?id=#{app_store_id}"
+    end
+
     def render(context)
       if parts = @text.match(/([\d]*)/)
         app_store_id = parts[1].strip
@@ -27,13 +29,13 @@ module Jekyll
       end
     end
 
-    def html_output_for(code)
-      code = code['results'][0]
+    def html_output_for(json)
+      json = json['results'][0]
 
-      name = code['trackName']
-      icon = code['artworkUrl60']
-      link = code['trackViewUrl']
-      bundleId = code['bundleId'].strip.gsub('.', '-');
+      name = json['trackName']
+      icon = json['artworkUrl60']
+      link = json['trackViewUrl']
+      bundleId = json['bundleId'].strip.gsub('.', '-').downcase;
 
       <<-HTML
 <a class='app-widget #{bundleId}' href='#{link}' target='_blank'>
@@ -43,12 +45,8 @@ module Jekyll
       HTML
     end
 
-    def script_url_for(app_store_id)
-      "http://itunes.apple.com/lookup?id=#{app_store_id}"
-    end
-
     def get_app_store_data(app_store_id)
-      app_store_url = script_url_for(app_store_id)
+      app_store_url = app_store_url_with_id(app_store_id)
       json = open(app_store_url).read
 
       local_file = get_local_file(app_store_id)
@@ -65,7 +63,6 @@ module Jekyll
       local_file = get_local_file(app_store_id)
 
       json = File.read local_file if File.exist? local_file
-
       return nil if json.nil?
 
       JSON.parse(json)
@@ -76,6 +73,7 @@ module Jekyll
     end
 
   end
+
 end
 
 Liquid::Template.register_tag('app_store', Jekyll::AppstoreTag)
