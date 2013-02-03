@@ -38,10 +38,14 @@ module Jekyll
       bundleId = json['bundleId'].strip.gsub('.', '-').downcase;
 
       <<-HTML
-<a class='app-widget #{bundleId}' href='#{link}' target='_blank'>
-  <i class='app-icon' style='background-image: url(#{icon})'></i>
-  <b class='app-name'>#{name}</b>
-</a>
+<div id="app-widget"">
+  <img src='#{icon}' class='app-icon' style="width:60px; height:60px; vertical-align:middle;" />
+	<span class='app-name'>
+		<a class='#{bundleId}' href='#{link}' target='_blank'>
+			#{name}
+		</a>
+	</span>
+</div>
       HTML
     end
 
