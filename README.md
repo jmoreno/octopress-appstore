@@ -19,10 +19,14 @@ Magically this:
 will become this:
 
 ```html
-<a class='app-widget com-apple-iBooks' href='https://itunes.apple.com/us/app/ibooks/id364709193?mt=8&uo=4' target='_blank'>
-  <i class='app-icon' style='background-image: url(http://a368.phobos.apple.com/us/r1000/110/Purple/v4/a0/93/08/a0930815-e79b-fb7a-8ea0-8793ddba49f9/Icon-iPhone.png)'></i>
-  <b class='app-name'>iBooks</b>
-</a>
+<div id='app-widget'>
+  <img src='http://a368.phobos.apple.com/us/r1000/110/Purple/v4/a0/93/08/a0930815-e79b-fb7a-8ea0-8793ddba49f9/Icon-iPhone.png' class='app-icon' style='width:60px; height:60px; vertical-align:middle;' />
+	<span class='app-name'>
+		<a class='com.apple.iBooks' href='https://itunes.apple.com/us/app/ibooks/id364709193?mt=8&uo=4' target='_blank'>
+			iBooks
+		</a>
+	</span>
+</div>
 ```
 
 ## License
