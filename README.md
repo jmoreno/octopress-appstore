@@ -1,6 +1,6 @@
 # Octopress AppStore Plugin
 
-An octopress plugin that displays app info from the AppStore.
+An octopress plugin that displays app info from the AppStore. Please note that it only works with apps availables at the US AppStore.
 
 ## Syntax
 
