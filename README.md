@@ -27,6 +27,8 @@ will become this:
 </p>
 ```
 
+and rendered as this:
+
 ![](http://25.media.tumblr.com/20428a0a47a660ce7682ef3a70048e4d/tumblr_mhp3o0iAv31qz4eico1_1280.jpg)
 
 ## License
