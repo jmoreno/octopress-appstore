@@ -16,7 +16,7 @@ module Jekyll
     end
 
     def app_store_url_with_id(app_store_id)
-      "http://itunes.apple.com/lookup?id=#{app_store_id}"
+      "http://itunes.apple.com/lookup?id=#{app_store_id}&country=es"
     end
 
     def render(context)
@@ -33,16 +33,21 @@ module Jekyll
       json = json['results'][0]
 
       name = json['trackName']
-      icon = json['artworkUrl60']
+      icon = json['artworkUrl100']
       link = json['trackViewUrl']
+      description = json['description']
       bundleId = json['bundleId'].strip.gsub('.', '-').downcase;
 
       <<-HTML
 <p id='app-widget-#{bundleId}'>
-  <img src='#{icon}' class='app-icon' style='width:60px; height:60px; vertical-align:middle; margin: 0.1em; border: 0em' />
-  <span class='app-name'>
-    <a class='#{bundleId}' href='#{link}' target='_blank'>#{name}</a>
-  </span>
+  <h2><a class='#{bundleId}' href='#{link}' target='_blank'>#{name}</a></h2>
+  <div>
+    <img src='#{icon}' class='app-icon' style='width:100px; height:100px; vertical-align:middle; margin: 0.1em; border: 0em' />
+  </div>
+  <div>
+    <br>
+    #{description}
+  </div>
 </p>
       HTML
     end
